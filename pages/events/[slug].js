@@ -4,7 +4,7 @@ import { API_URL } from '@/config/index'
 export default function EventPage({ event }) {
   return (
     <Layout>
-      <h1>{event.name}e</h1>
+      <h1>{event.name}</h1>
     </Layout>
   )
 }

@@ -3,7 +3,7 @@ import { API_URL } from '@/config/index'
 import Link from 'next/link'
 import EventItem from '@/components/EventItem';
 
-export default function Home({events}) {
+export default function EventsPage({events}) {
   return (
     <Layout title='Dj events | Events page'>
       <h1>Events</h1>

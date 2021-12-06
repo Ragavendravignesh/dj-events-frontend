@@ -9,6 +9,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import Image from 'next/image'
 import { FaImage } from 'react-icons/fa'
 import moment from 'moment'
+import Modal from '@/components/Modal'
 
 export default function AddEvent({ evt }) {
   const router = useRouter()
@@ -25,6 +26,8 @@ export default function AddEvent({ evt }) {
   const [imagePreview, setImagePreview] = useState(
     evt.image ? evt.image.formats.thumbnail.url : null
   )
+
+  const [showModal, setShowModal] = useState(false)
 
   const handleInputChange = (e) => {
     const { name, value } = e.target
@@ -143,11 +146,15 @@ export default function AddEvent({ evt }) {
       {imagePreview && <Image src={imagePreview} height={100} width={200} />}
 
       <div>
-        <button className='btn-secondary'>
+        <button className='btn-secondary' onClick={() => setShowModal(true)}>
           <FaImage />
           Change image
         </button>
       </div>
+
+      <Modal show={showModal} onClose={() => setShowModal(false)}>
+        IMAGE UPLOAD
+      </Modal>
     </Layout>
   )
 }

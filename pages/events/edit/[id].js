@@ -10,6 +10,7 @@ import Image from 'next/image'
 import { FaImage } from 'react-icons/fa'
 import moment from 'moment'
 import Modal from '@/components/Modal'
+import ImageUpload from '@/components/ImageUpload'
 
 export default function AddEvent({ evt }) {
   const router = useRouter()
@@ -61,6 +62,14 @@ export default function AddEvent({ evt }) {
         router.push(`/events/${evt.slug}`)
       }
     }
+  }
+
+  const handleImageUploaded = async () => {
+    const res = await fetch(`${API_URL}/events/${evt.id}`)
+    const data = await res.json()
+
+    setImagePreview(data.image.formats.thumbnail.url)
+    setShowModal(false)
   }
 
   return (
@@ -153,7 +162,7 @@ export default function AddEvent({ evt }) {
       </div>
 
       <Modal show={showModal} onClose={() => setShowModal(false)}>
-        IMAGE UPLOAD
+        <ImageUpload evtId={evt.id} imageUploaded={handleImageUploaded} />
       </Modal>
     </Layout>
   )

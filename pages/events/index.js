@@ -21,6 +21,7 @@ export default function EventsPage({ events, page, total }) {
 
 export async function getServerSideProps({ query: { page = 1 } }) {
   const skip = +page === 0 ? 0 : (+page - 1) * PER_PAGE
+
   const res = await fetch(
     `${API_URL}/events?_sort=date:ASC&_limit=${PER_PAGE}&_start=${skip}`
   )

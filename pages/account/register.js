@@ -26,6 +26,10 @@ export default function LoginPage() {
     register({ username, email, password })
   }
 
+  useEffect(() => {
+    error && toast.error(error)
+  }, [])
+
   return (
     <Layout title='User Register'>
       <div className={styles.auth}>

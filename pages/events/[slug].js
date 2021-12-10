@@ -6,6 +6,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import EventMap from '@/components/EventMap'
 
 export default function EventPage({ event }) {
   return (

@@ -10,13 +10,13 @@ export default function DashboardEvent({ evt, handleDelete }) {
       <Link href={`/events/edit/${evt.id}`}>
         <a className={styles.edit}>
           <FaPencilAlt />
-          Edit event
+          Edit
         </a>
       </Link>
 
       <a href='#' className={styles.delete} onClick={() => handleDelete(evt.id)}>
         <FaTimes />
-        Delete event
+        Delete
       </a>
     </div>
   )

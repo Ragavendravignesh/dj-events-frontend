@@ -5,7 +5,11 @@ import Link from 'next/link'
 export default function DashboardEvent({ evt, handleDelete }) {
   return (
     <div className={styles.event}>
-      <h4>{evt.name}</h4>
+      <h4>
+        <Link href={`/events/${evt.slug}`}>
+          <a>{evt.name}</a>
+        </Link>
+      </h4>
 
       <Link href={`/events/edit/${evt.id}`}>
         <a className={styles.edit}>
@@ -14,7 +18,11 @@ export default function DashboardEvent({ evt, handleDelete }) {
         </a>
       </Link>
 
-      <a href='#' className={styles.delete} onClick={() => handleDelete(evt.id)}>
+      <a
+        href='#'
+        className={styles.delete}
+        onClick={() => handleDelete(evt.id)}
+      >
         <FaTimes />
         Delete
       </a>

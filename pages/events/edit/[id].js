@@ -11,8 +11,9 @@ import { FaImage } from 'react-icons/fa'
 import moment from 'moment'
 import Modal from '@/components/Modal'
 import ImageUpload from '@/components/ImageUpload'
+import { parseCookies } from '@/helpers/index'
 
-export default function AddEvent({ evt }) {
+export default function AddEvent({ evt, token }) {
   const router = useRouter()
   const [values, setValues] = useState({
     name: evt.name,
@@ -51,6 +52,7 @@ export default function AddEvent({ evt }) {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify(values),
       })
@@ -162,7 +164,7 @@ export default function AddEvent({ evt }) {
       </div>
 
       <Modal show={showModal} onClose={() => setShowModal(false)}>
-        <ImageUpload evtId={evt.id} imageUploaded={handleImageUploaded} />
+        <ImageUpload evtId={evt.id} imageUploaded={handleImageUploaded} token={token} />
       </Modal>
     </Layout>
   )
@@ -173,9 +175,9 @@ export async function getServerSideProps({ params: { id }, req }) {
 
   const evt = await res.json()
 
-  console.log(req.headers.cookie)
+  const { token } = parseCookies(req)
 
   return {
-    props: { evt },
+    props: { evt, token },
   }
 }

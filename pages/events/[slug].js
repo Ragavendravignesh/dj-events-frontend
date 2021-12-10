@@ -6,38 +6,11 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import { useRouter } from 'next/router'
 
 export default function EventPage({ event }) {
-  const router = useRouter()
-
-  const deleteEvent = async (e) => {
-    const res = await fetch(`${API_URL}/events/${event.id}`, {
-      method: 'DELETE',
-    })
-
-    const data = await res.json()
-
-    if (!res.ok) {
-      toast.error(data.message)
-    } else {
-      router.push('/events')
-    }
-  }
   return (
     <Layout>
       <div className={styles.event}>
-        <div className={styles.controls}>
-          <Link href={`/events/edit/${event.id}`}>
-            <a>
-              <FaPencilAlt /> Edit event
-            </a>
-          </Link>
-          <a href='#' className={styles.delete} onClick={deleteEvent}>
-            <FaTimes /> Delete event
-          </a>
-        </div>
-
         <span>
           {new Date(event.date).toLocaleDateString('en-US')} at {event.time}
         </span>

@@ -10,7 +10,7 @@ export default function Home({ events }) {
 
       {!events.length && <h3>No Events Found</h3>}
 
-      {events.map((evt) => (
+      {events.length && events.map((evt) => (
         <EventItem key={evt.id} evt={evt} />
       ))}
 

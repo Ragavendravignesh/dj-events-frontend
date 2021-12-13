@@ -51,7 +51,7 @@ export default function LoginPage() {
           <input type='submit' value='Login' className='btn' />
         </form>
         <p>
-          Don't have an account?
+          Dont have an account?
           <Link href='/account/register'> Please Register</Link>
         </p>
       </div>

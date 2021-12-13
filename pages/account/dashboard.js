@@ -5,7 +5,7 @@ import styles from '@/styles/Dashboard.module.css'
 import DashboardEvent from '@/components/DashboardEvent'
 import { useRouter } from 'next/router'
 
-export default function dashboard({ events, token }) {
+export default function Dashboard({ events, token }) {
   const router = useRouter()
 
   const deleteEvent = async (id) => {
